@@ -135,9 +135,9 @@ function isIntersect(x, y,  enemy){
         
         enemyOne = new Crawler(375, 175, 80, 80, 'orange');
      console.log(enemyOne)
-     enemyTwo = new Crawler(275, 175, 80, 80, 'green');
-     enemyThree = new Crawler(175, 175, 80, 80, 'red');
-     enemyFour = new Crawler(475, 175, 80, 80, 'purple');
+        enemyTwo = new Crawler(275, 175, 80, 80, 'green');
+        enemyThree = new Crawler(175, 175, 80, 80, 'red');
+        enemyFour = new Crawler(475, 175, 80, 80, 'purple');
 
         // mainHero = new Crawler(100, 100, 40, 40, 'blue');
         //TODO need to make mouse movement as contrlor instead of WASD keys
@@ -167,19 +167,25 @@ function isIntersect(x, y,  enemy){
            if(isIntersect(e.offsetX, e.offsetY, enemyOne)){
                console.log('you hit enemyOne')
                enemyOne.alive = false;
-             
-           }
+
+               }
+               
            if(isIntersect(e.offsetX, e.offsetY, enemyTwo)){
                console.log('you hit enemyTwo')
                enemyTwo.alive = false;
+
            }
+
            if(isIntersect(e.offsetX, e.offsetY, enemyThree)){
                console.log('you hit enemyThree')
                enemyThree.alive = false;
+
            }
+
            if(isIntersect(e.offsetX, e.offsetY, enemyFour)){
                console.log('you hit enemyFour')
                enemyFour.alive = false;
+
            }
           
             
