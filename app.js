@@ -1,16 +1,22 @@
 let movementDisplay;
 let ctx;
 let gameArea;
-let mainHero;
 let clientX;
 let clientY;
 let enemyOne;
+let enemyTwo;
+let enemyThree;
+let enemyFour;
 
 
 
 
+function mousePressed(){
+    enemyOne.clicked();
+}
 //Crawler Constructor function
-function Crawler(x, y, width, height, color){
+class Crawler{
+constructor(x, y, width, height, color){
     this.x = x;
     this.y = y;
     this.width = width;
@@ -22,7 +28,12 @@ function Crawler(x, y, width, height, color){
         ctx.fillRect(this.x, this.y, this.width, this.height)
     }
 
+ }
+
+ 
+ 
 }
+
 
 const gameLoop = () =>{
     // clearing the canvas game area back to zero
@@ -34,13 +45,21 @@ const gameLoop = () =>{
       //render enemyOne to show 
      enemyOne.render()
      //TODO detect hit by being clicked on
-    //  detectHit()
+     //  detectHit()
+    } 
+    if(enemyTwo.alive){
+        enemyTwo.render()
     }
-    // enemyTwo.render()
-    // enemyThree.render()
-    // enemyFour.render()
-    // mainHero.render()
+    if(enemyThree.alive){
+        enemyThree.render()
+    }
+    if(enemyFour.alive){
+        enemyFour.render()
+    }
 
+   
+    
+    
 }
 
 
@@ -80,17 +99,20 @@ function keyUpHandler(event) {
     }
     
  
+function isIntersect(x, y,  enemy){
+    if (x >= enemy.x && x < enemy.x+enemy.width && 
+        y >= enemy.y && y < enemy.y+enemy.height) {
+        console.log('you clicked enemy ' + enemy.color)
+        document.getElementById('status').innerHTML = 'you destryoed the ' + enemy.color + ' enemy!';
+        return true;
+    
+        }
+        return false;
+}
+ 
 
-  
- 
- 
 
- 
- 
- 
-    //  enemyTwo = new Crawler(275, 175, 80, 80, 'green');
-    //  enemyThree = new Crawler(175, 175, 80, 80, 'orange');
-    //  enemyFour = new Crawler(475, 175, 80, 80, 'purple');
+
     
     
     document.addEventListener('DOMContentLoaded', ()=>{
@@ -111,24 +133,59 @@ function keyUpHandler(event) {
         //and the crawler size and color 
         // set up click event function should e.x and e.y
         
+        enemyOne = new Crawler(375, 175, 80, 80, 'orange');
+     console.log(enemyOne)
+     enemyTwo = new Crawler(275, 175, 80, 80, 'green');
+     enemyThree = new Crawler(175, 175, 80, 80, 'red');
+     enemyFour = new Crawler(475, 175, 80, 80, 'purple');
+
         // mainHero = new Crawler(100, 100, 40, 40, 'blue');
         //TODO need to make mouse movement as contrlor instead of WASD keys
         //and first document.addEventListener('click', movementHandler)
-        document.addEventListener('keydown', keyDownHandler, false);
-        document.addEventListener('keyup', keyUpHandler, false);
-        gameArea.addEventListener('mousedown', function (e){
+        // document.addEventListener('keydown', keyDownHandler, false);
+        // document.addEventListener('keyup', keyUpHandler, false);
+        gameArea.addEventListener('click', function (e){
+
             //shows clientx and client y click coordiantes
-            console.log(e);
-            let mouseX = e.clientX - gameArea.offsetLeft;
-            console.log(mouseX);
-            let mouseY = e.clientY - gameArea.offsetTop; 
-            console.log(mouseY);
-            //forumla for hit detection with mouse
-            if (mouseX >= this.x && mouseX < this.x+this.width && 
-                mouseY >= this.y && mouseY < this.y+this.height );
-                    document.getElementById('status').innerHTML = 'you touched' + enemyOne;
+            console.log(e.offsetX);
+            console.log(e.offsetY);
+            // console.log('click: ' + e.offsetX + '\ ' + e.offsetY ) 
+            let mouseX = e.clientX ;
+            console.log('mouseX position: ', mouseX);
+            let mouseY = e.clientY ; 
+           
+            console.log('mouseY position: ', mouseY);
+            console.log('enemyX: ', enemyOne.x)
+            console.log('enemyY: ', enemyOne.y)
+            console.log('enemy width: ', enemyOne.width)
+            console.log('enemy height: ', enemyOne.height)
+
+            // forumla for hit detection with mouse
+            // y position starts up lower and ends down higher from top to bottom
+            // x gets starts lower from left and goes bigger to right
+            //TODO refactor to make enemies an array
+           if(isIntersect(e.offsetX, e.offsetY, enemyOne)){
+               console.log('you hit enemyOne')
+               enemyOne.alive = false;
+             
+           }
+           if(isIntersect(e.offsetX, e.offsetY, enemyTwo)){
+               console.log('you hit enemyTwo')
+               enemyTwo.alive = false;
+           }
+           if(isIntersect(e.offsetX, e.offsetY, enemyThree)){
+               console.log('you hit enemyThree')
+               enemyThree.alive = false;
+           }
+           if(isIntersect(e.offsetX, e.offsetY, enemyFour)){
+               console.log('you hit enemyFour')
+               enemyFour.alive = false;
+           }
+          
+            
+
+           
             });
-            enemyOne = new Crawler(100, 50, 50, 50, 'red');
             
             // mainHero = new Crawler(50, 80, 20, 20, 'blue'); 
             // document.addEventListener('click', click)
