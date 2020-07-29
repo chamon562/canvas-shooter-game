@@ -1,5 +1,76 @@
 canvas{
+    
     background-color: lightblue;
     width: 100%;
     height: 100;
+}
+
+#game-area {
+    background-image: url('/Users/apple/Downloads/Sniper stuff/background2.jpg');
+    background-size: 100% 100%;
+}
+
+.modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* scale used to hide the overlay to invisible 0 
+    scale used to smoothly transition in and out of browser*/
+    transform: translate(-50%, -50%) scale(0);
+    /* supposed to zoom in and out but nothing? */
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+}
+/* added scale to 1 so in html would show full scale size */
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header{
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.modal-header .title {
+    font-size: 1.50rem;
+    font-weight: bold;
+}
+
+.modal-header .close-button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.50rem;
+    font-weight: bold;
+}
+
+.modal-body{
+    padding: 10px 15px;
+
+}
+
+#overlay{
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    /* lets you be able to click on the how to play button in the overlay */
+    pointer-events: none;
+}
+
+#overlay.active{
+    opacity: 1;
+    pointer-events: all;
 }

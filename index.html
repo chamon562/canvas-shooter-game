@@ -8,11 +8,28 @@
     <title>2D FPS Shooter</title>
 </head>
 <body>
+    <button data-modal-target="#modal">How To Play</button>
+        <div class="modal active" id="modal">
+            <div class="modal-header">
+                <div class="title">How To Play</div>
+                <button data-closed-button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                Be ready to aim and shoot the enemies 
+                that pop up on the screen within a 2 second 
+                time frame before they fire back. Your HP starts
+                at 3, so if you get hit 3 times your dead. If you 
+                manage to survive and get 15 kills you win the game!
+            </div>
+        </div>
+        <div id="overlay"></div>
+
+    
     <div id="container">
      <aside id="top-left"><h2>Shoot the Enemy</h2></aside>
      <aside id="top-right"><h2 id="movement"> <h2 id="status"> 0 | 0</h2></h2></aside>
      <main>
-       <canvas id="game-area"></canvas>
+       <canvas id="game-area" id="drawing"></canvas>
        <aside id="bottom-left"><h2>3</h2></aside>
         <aside id="bottom-right"><h2>Play the game</h2></aside>
      </main>

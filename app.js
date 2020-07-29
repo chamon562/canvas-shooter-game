@@ -8,12 +8,14 @@ let enemyTwo;
 let enemyThree;
 let enemyFour;
 
+let score = 0;
+
+
+//TODO MAKE SCORE
 
 
 
-function mousePressed(){
-    enemyOne.clicked();
-}
+
 //Crawler Constructor function
 class Crawler{
 constructor(x, y, width, height, color){
@@ -23,15 +25,23 @@ constructor(x, y, width, height, color){
     this.height = height;
     this.color = color;
     this.alive = true;
+    // this.image = new Image();
+    //     if(src){
+    //         this.image.src = src;
+    //     }
+    //this.render is like draw
     this.render = function(){
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height)
+        // if(this.image.src){
+        //     ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
+        // } else {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y, this.width, this.height)
+
+        // }
     }
 
  }
 
- 
- 
 }
 
 
@@ -44,9 +54,12 @@ const gameLoop = () =>{
     if(enemyOne.alive){
       //render enemyOne to show 
      enemyOne.render()
-     //TODO detect hit by being clicked on
-     //  detectHit()
-    } 
+    // } else{
+    //   ctx.clearRect(0, 0, this.width, this.height);
+    // setTimeout(function(){
+    // enemyOne.render()
+    // }, 3000)
+    }
     if(enemyTwo.alive){
         enemyTwo.render()
     }
@@ -57,10 +70,10 @@ const gameLoop = () =>{
         enemyFour.render()
     }
 
-   
-    
-    
 }
+
+// let enemies = new Crawler(enemyOne, enemyTwo, enemyThree, enemyFour)
+
 
 
 //get keycode
@@ -109,13 +122,14 @@ function isIntersect(x, y,  enemy){
         }
         return false;
 }
+
+
+ //TODO function to link image background and enemies
  
 
 
 
-    
-    
-    document.addEventListener('DOMContentLoaded', ()=>{
+        document.addEventListener('DOMContentLoaded', ()=>{
         console.log('Dom is linked');
         //link the movementDisplay
         movementDisplay = document.getElementById('movement');
@@ -125,81 +139,103 @@ function isIntersect(x, y,  enemy){
         console.log('game area linked');
         
         //canvas config making game area play field
-        gameArea.setAttribute('height', 480);
+        gameArea.setAttribute('height', 600);
         gameArea.setAttribute('width', 800);
         ctx = gameArea.getContext('2d');
-        //crawler takes in(x, y, width, height, color)
-        //this is the (x,y) coord the crawler will be on 
-        //and the crawler size and color 
-        // set up click event function should e.x and e.y
+        // let imgObj = new Image();
+        // imgObj.onload = function () {
+        //     let w = gameArea.width;
+        //     let nw = imgObj.naturalWidth;
+        //     let nh = imgObj.naturalHeight;
+        //     let aspect = nw/nh;
+        //     let h = gameArea.width / aspect;
+        //     gameArea.height = h;
+        // };
+        // imgObj.src = './Users/apple/Downloads/Sniper stuff/sniper background/Keg-Background.jpg';        
         
-        enemyOne = new Crawler(375, 175, 80, 80, 'orange');
-     console.log(enemyOne)
-        enemyTwo = new Crawler(275, 175, 80, 80, 'green');
-        enemyThree = new Crawler(175, 175, 80, 80, 'red');
-        enemyFour = new Crawler(475, 175, 80, 80, 'purple');
-
+        
+        //crawler takes in(x, y, width, height, color)
+        enemyOne = new Crawler(375, 0, 80, 80, 'orange');
+        enemyTwo = new Crawler(275, 450, 175, 150, 'green');
+        enemyThree = new Crawler(175, 300, 80, 90, 'red');
+        enemyFour = new Crawler(475, 350, 80, 100, 'purple');
         // mainHero = new Crawler(100, 100, 40, 40, 'blue');
         //TODO need to make mouse movement as contrlor instead of WASD keys
-        //and first document.addEventListener('click', movementHandler)
+
+        
         // document.addEventListener('keydown', keyDownHandler, false);
-        // document.addEventListener('keyup', keyUpHandler, false);
-        gameArea.addEventListener('click', function (e){
+        // document.addEventListener('mousemove', crossHair);
+        gameArea.addEventListener('mousedown', function (e){
+        
+
 
             //shows clientx and client y click coordiantes
-            console.log(e.offsetX);
-            console.log(e.offsetY);
+            // console.log(e.offsetX);
+            // console.log(e.offsetY);
             // console.log('click: ' + e.offsetX + '\ ' + e.offsetY ) 
             let mouseX = e.clientX ;
             console.log('mouseX position: ', mouseX);
             let mouseY = e.clientY ; 
            
             console.log('mouseY position: ', mouseY);
-            console.log('enemyX: ', enemyOne.x)
-            console.log('enemyY: ', enemyOne.y)
-            console.log('enemy width: ', enemyOne.width)
-            console.log('enemy height: ', enemyOne.height)
+            console.log('enemyX: ', enemyOne.x);
+            console.log('enemyY: ', enemyOne.y);
+            console.log('enemy width: ', enemyOne.width);
+            console.log('enemy height: ', enemyOne.height);
 
             // forumla for hit detection with mouse
             // y position starts up lower and ends down higher from top to bottom
             // x gets starts lower from left and goes bigger to right
             //TODO refactor to make enemies an array
            if(isIntersect(e.offsetX, e.offsetY, enemyOne)){
-               console.log('you hit enemyOne')
+               console.log('you hit enemyOne');
                enemyOne.alive = false;
-
-               }
+               setTimeout(function(){
+                enemyOne.alive = true
+               }, 3000)
                
-           if(isIntersect(e.offsetX, e.offsetY, enemyTwo)){
-               console.log('you hit enemyTwo')
-               enemyTwo.alive = false;
+               //how to set time interval and respawn enemy back with 
+               //funciton in here?
+               }
 
+           if(isIntersect(e.offsetX, e.offsetY, enemyTwo)){
+               console.log('you hit enemyTwo');
+               enemyTwo.alive = false;
+               setTimeout(function(){
+                enemyTwo.alive = true
+               }, 3000)
+
+                
            }
 
            if(isIntersect(e.offsetX, e.offsetY, enemyThree)){
-               console.log('you hit enemyThree')
+               console.log('you hit enemyThree');
                enemyThree.alive = false;
-
+               setTimeout(function(){
+                enemyThree.alive = true
+               }, 3000)
+                
            }
 
            if(isIntersect(e.offsetX, e.offsetY, enemyFour)){
-               console.log('you hit enemyFour')
+               console.log('you hit enemyFour');
                enemyFour.alive = false;
-
+               setTimeout(function(){
+                enemyFour.alive = true
+               }, 3000)
+              
            }
-          
-            
-
-           
-            });
+          });
             
             // mainHero = new Crawler(50, 80, 20, 20, 'blue'); 
             // document.addEventListener('click', click)
             //under this enemyOne eventListener for linking mouse movement? or onclick?
     // document.addEventListener('click', movementHandler );
     let runGame = setInterval(gameLoop, 60);
+    
 
 })
+
 
 //keep track of where those random locations 
 //variables keeping track of squares and dimensions
