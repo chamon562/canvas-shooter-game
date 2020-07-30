@@ -1,78 +1,185 @@
+let canvas = document.getElementById('game-area');
+        console.log('game area linked');
+        
+        //canvas config making game area play field
+        canvas.setAttribute('height', 600);
+        canvas.setAttribute('width', 800);
+let ctx = canvas.getContext('2d');
+
 let movementDisplay;
-let ctx;
-let gameArea;
 let clientX;
 let clientY;
 let enemyOne;
 let enemyTwo;
 let enemyThree;
 let enemyFour;
-
+//TODO MAKE SCORE Count each death on enemy
 let score = 0;
+let oneY = 0;
+let oneX = 0;
+let twoY = 0;
+let twoX = 0;
+let threeX = 0;
+let threeY = 0;
+let fourY = 0;
+let fourX = 0;
+let startDelay = 0;
 
 
-//TODO MAKE SCORE
 
 
 
 
 //Crawler Constructor function
 class Crawler{
-constructor(x, y, width, height, color){
+    constructor(x, y, width, height, color, speed){
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
     this.color = color;
     this.alive = true;
-    // this.image = new Image();
-    //     if(src){
-    //         this.image.src = src;
-    //     }
-    //this.render is like draw
-    this.render = function(){
+    //trying to add in speed 
+    this.speed = speed;
+    //this.dx the changes in x position
+    this.image = new Image();
+        // if(src){
+            // this.image.src = src;
+        // }
+    // this.render is like draw
+    this.render = function enemy(){
         // if(this.image.src){
         //     ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
         // } else {
             ctx.fillStyle = this.color;
             ctx.fillRect(this.x, this.y, this.width, this.height)
-
+            
         // }
+        }
+
+        
+
     }
 
- }
+    
 
 }
 
+// enemy()
+// function enemy() {
+//     console.log('enemy move function example')
+    
 
+// }
+      
+  
+
+function renderEnemies(){
+ 
+        if(enemyOne.alive){
+        //render enemyOne to show 
+            enemyOne.render()  
+                        
+            if(oneY < 20 && oneX > -20){
+                oneY += 1;
+                oneX += 1;
+                
+                enemyOne.y += 5
+                console.log(enemyOne.x)
+                console.log(enemyOne.y)
+          } else if (oneY == -200 && oneX == -200){
+              oneY = 0;
+              oneX = 0;
+              console.log(enemyOne.x)
+              console.log(enemyOne.y)
+          }
+          //starting point for sqaure
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+       
+          ctx.fillRect(enemyOne.x, enemyOne.y, 80, 80, )
+          
+        }  
+
+        if(enemyTwo.alive){
+            enemyTwo.render()
+            if(twoY < 15 && twoX > -20){
+                twoY += 1;
+                twoX += 1;
+                
+                enemyTwo.y -= 10
+                console.log(enemyTwo.x)
+                console.log(enemyTwo.y)
+          } else if (twoY == -200 && twoX == -200){
+              twoY = 0;
+              twoX = 0;
+              console.log(enemyTwo.x)
+              console.log(enemyTwo.y)
+          }
+          //starting point for sqaure
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+          ctx.fillRect(enemyTwo.x, enemyTwo.y, 200, 150)
+        }
+        if(enemyThree.alive){
+          enemyThree.render()
+
+          if(threeY < 15 && threeX > -20){
+            threeY += 1;
+            threeX += 1;
+            
+            enemyThree.x += 12
+          
+      } else if (threeY == -200 && threeX == -200){
+          threeY = 0;
+          threeX = 0;
+          
+      }
+      //starting point for sqaure
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+   
+      ctx.fillRect(enemyThree.x, enemyThree.y, 80, 90)
+         
+
+      }
+      if(enemyFour.alive){
+          enemyFour.render()
+
+
+          if(fourY < 15 && fourX > -20){
+            fourY += 1;
+            fourX += 1;
+            
+            enemyFour.x -= 25
+          
+      } else if (fourY == -200 && fourX == -200){
+          fourY = 0;
+          fourX = 0;
+          
+      }
+      //starting point for sqaure
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+   
+      ctx.fillRect(enemyFour.x, enemyFour.y, 80, 120)
+      }
+
+}
 const gameLoop = () =>{
     // clearing the canvas game area back to zero
-    ctx.clearRect(0, 0, gameArea.width, gameArea.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     //TODO make movement display with mouse
     // movementDisplay.textContent = `X:${mainHero.x}\nY:${mainHero.this..y} `;
     //show the enemyOne if ogre is alive
-    if(enemyOne.alive){
-      //render enemyOne to show 
-     enemyOne.render()
-    // } else{
-    //   ctx.clearRect(0, 0, this.width, this.height);
-    // setTimeout(function(){
-    // enemyOne.render()
-    // }, 3000)
+    if(startDelay === 0){
+        setTimeout(function(){
+            renderEnemies()
+            startDelay = 1
+        }, 3000)
+    } else {
+        renderEnemies()
     }
-    if(enemyTwo.alive){
-        enemyTwo.render()
-    }
-    if(enemyThree.alive){
-        enemyThree.render()
-    }
-    if(enemyFour.alive){
-        enemyFour.render()
-    }
-
 }
 
-// let enemies = new Crawler(enemyOne, enemyTwo, enemyThree, enemyFour)
+
 
 
 
@@ -122,10 +229,13 @@ function isIntersect(x, y,  enemy){
         }
         return false;
 }
+//function for enemies to move in and out of screen
+// select the enemy i want 
+//move starting from x to another x or y to another y
 
 
- //TODO function to link image background and enemies
- 
+
+//TODO function to link image background and enemies
 
 
 
@@ -134,38 +244,20 @@ function isIntersect(x, y,  enemy){
         //link the movementDisplay
         movementDisplay = document.getElementById('movement');
         console.log('movement linked')
-        //link the game layout 
-        gameArea = document.getElementById('game-area');
-        console.log('game area linked');
-        
-        //canvas config making game area play field
-        gameArea.setAttribute('height', 600);
-        gameArea.setAttribute('width', 800);
-        ctx = gameArea.getContext('2d');
-        // let imgObj = new Image();
-        // imgObj.onload = function () {
-        //     let w = gameArea.width;
-        //     let nw = imgObj.naturalWidth;
-        //     let nh = imgObj.naturalHeight;
-        //     let aspect = nw/nh;
-        //     let h = gameArea.width / aspect;
-        //     gameArea.height = h;
-        // };
-        // imgObj.src = './Users/apple/Downloads/Sniper stuff/sniper background/Keg-Background.jpg';        
         
         
         //crawler takes in(x, y, width, height, color)
-        enemyOne = new Crawler(375, 0, 80, 80, 'orange');
-        enemyTwo = new Crawler(275, 450, 175, 150, 'green');
-        enemyThree = new Crawler(175, 300, 80, 90, 'red');
-        enemyFour = new Crawler(475, 350, 80, 100, 'purple');
+        enemyOne = new Crawler(375, -100, 80, 80, 'orange');
+        enemyTwo = new Crawler(275, 600, 300, 300, 'green');
+        enemyThree = new Crawler(-120, 300, 80, 90, 'red');
+        enemyFour = new Crawler(800, 350, 80, 100, 'purple');
         // mainHero = new Crawler(100, 100, 40, 40, 'blue');
         //TODO need to make mouse movement as contrlor instead of WASD keys
 
         
         // document.addEventListener('keydown', keyDownHandler, false);
         // document.addEventListener('mousemove', crossHair);
-        gameArea.addEventListener('mousedown', function (e){
+        canvas.addEventListener('mousedown', function (e){
         
 
 
@@ -191,9 +283,14 @@ function isIntersect(x, y,  enemy){
                console.log('you hit enemyOne');
                enemyOne.alive = false;
                setTimeout(function(){
-                enemyOne.alive = true
+                enemyOne.alive = true; 
+                //make X and Y random to pop up in different places
+                oneY = 0
+                oneX = 0
+                enemyOne.y = -100;
+                renderEnemies()
                }, 3000)
-               
+               //math.random
                //how to set time interval and respawn enemy back with 
                //funciton in here?
                }
@@ -203,6 +300,10 @@ function isIntersect(x, y,  enemy){
                enemyTwo.alive = false;
                setTimeout(function(){
                 enemyTwo.alive = true
+                twoY = 0
+                twoX = 0
+                enemyTwo.y = 600
+                renderEnemies()
                }, 3000)
 
                 
@@ -213,6 +314,10 @@ function isIntersect(x, y,  enemy){
                enemyThree.alive = false;
                setTimeout(function(){
                 enemyThree.alive = true
+                threeY = 0
+                threeX = 0
+                enemyThree.x = 0
+                renderEnemies()
                }, 3000)
                 
            }
@@ -237,8 +342,3 @@ function isIntersect(x, y,  enemy){
 })
 
 
-//keep track of where those random locations 
-//variables keeping track of squares and dimensions
-//what do i need to compare in order do that
-//if computer doesnt know where it is then user cant click 
-//generate their location of the enemy and store it and compare it. 

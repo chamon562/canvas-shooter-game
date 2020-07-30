@@ -10,6 +10,14 @@ canvas{
     background-size: 100% 100%;
 }
 
+
+span{
+    color: red;
+}
+
+span.green{
+    color:  rgba(106, 177, 0, 0.988);
+}
 .modal{
     position: fixed;
     top: 50%;
@@ -18,7 +26,7 @@ canvas{
     scale used to smoothly transition in and out of browser*/
     transform: translate(-50%, -50%) scale(0);
     /* supposed to zoom in and out but nothing? */
-    transition: 200ms ease-in-out;
+   transition: 200ms ease-in-out;
     border: 1px solid black;
     border-radius: 10px;
     z-index: 10;
@@ -55,12 +63,12 @@ canvas{
 
 .modal-body{
     padding: 10px 15px;
-
 }
 
 #overlay{
     position: fixed;
     opacity: 0;
+    transition: 200ms ease-in-out;
     top: 0;
     left: 0;
     right: 0;

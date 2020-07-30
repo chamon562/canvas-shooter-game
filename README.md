@@ -54,13 +54,13 @@ function isIntersect(x, y,  enemy){
 
 5. once hit detection is active enemy disapear. <---> add visual effect to hit like a star or something.//side note <--->
 
-7. once enemies confirm disapear create them random spawn and have animation speed when they come out.
+7. once enemies confirm disapear create them random spawn and have animation speed when they come in and out from a certain distance.
 
 8. create attack for enemies to atk back within setinterval of 2 seconds to create a react or player loses health
 
 7. make health by number 3 easy. if player is hit 3 times by enemy, game over.
  
- 8. have MVP, have win condition and the game ends, have intro to show how to play, 
+ 8. have MVP, have win condition and the game ends 
 ## visuals 
 
 - use a background of an old wherehouse 
