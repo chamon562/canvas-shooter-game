@@ -14,7 +14,7 @@ gameArea = document.getElementById('game-area');
 2. make enemy constrcutor function
 ```js
     // set up to have an enemy
-function Crawler(x, y, width, height, color){
+function Crawler(x, y, width, height, color, type){
     this.x = x;
     this.y = y;
     this.width = width;
@@ -50,11 +50,36 @@ function isIntersect(x, y,  enemy){
 
 ```
 
-4. target dies from hit detection succss, now create them to spawn back on setTinterval setTimeout//their place still registers so have to reset board to zero?
+4. Giving my enemies movement onto the screen. I had to do alot of playing around with making a new variable oneY oneX for the new x and y, because it made it easier to manpulate. Each logic for each enemy has its own way of being moved by the enemyOne.y or x += 5 and finding a way to increase their way of coming on to the screen using the negative and positive integers was a good learning moment. I console.log the enmies x and y to see check if they were moving.
+```Js
+if(enemyOne.alive){
+        //render enemyOne to show 
+            enemyOne.render()  
+                        
+            if(oneY < 20 && oneX > -20){
+                oneY += 1;
+                oneX += 1;
+                
+                enemyOne.y += 5
+                console.log(enemyOne.x)
+                console.log(enemyOne.y)
+          } else if (oneY == -200 && oneX == -200){
+              oneY = 0;
+              oneX = 0;
+              console.log(enemyOne.x)
+              console.log(enemyOne.y)
+          }
+          //starting point for sqaure
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+       
+          ctx.fillRect(enemyOne.x, enemyOne.y, 80, 80)
+          
+        }  
 
-5. once hit detection is active enemy disapear. <---> add visual effect to hit like a star or something.//side note <--->
+```
 
-7. once enemies confirm disapear create them random spawn and have animation speed when they come in and out from a certain distance.
+5. create an attack to make player lose health
+
 
 8. create attack for enemies to atk back within setinterval of 2 seconds to create a react or player loses health
 

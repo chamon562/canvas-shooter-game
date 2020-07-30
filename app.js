@@ -4,8 +4,9 @@ let canvas = document.getElementById('game-area');
         //canvas config making game area play field
         canvas.setAttribute('height', 600);
         canvas.setAttribute('width', 800);
+ 
 let ctx = canvas.getContext('2d');
-
+let playAudio = document.getElementById('backgroundMusic');
 let movementDisplay;
 let clientX;
 let clientY;
@@ -26,15 +27,34 @@ let fourX = 0;
 let startDelay = 0;
 
 
-
+function playBackgroundMusic(){
+    playAudio.play()
+}
 
 
 
 //Crawler Constructor function
 class Crawler{
-    constructor(x, y, width, height, color, speed){
+    constructor(x, y, width, height, color, speed, type){
+    this.type = type;
+    if(type == 'image'){
+        this.image = new Image();
+        this.image.src = color;
+    }
     this.x = x;
     this.y = y;
+    this.update = function(){
+        ctx = canvas.getContext('2d');
+        if(type == 'image'){
+            ctx.drawImage(this.image,
+            this.x,
+            this.y,
+            this.width, this.height);
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height)
+        }
+    }
     this.width = width;
     this.height = height;
     this.color = color;
@@ -42,7 +62,6 @@ class Crawler{
     //trying to add in speed 
     this.speed = speed;
     //this.dx the changes in x position
-    this.image = new Image();
         // if(src){
             // this.image.src = src;
         // }
@@ -51,7 +70,7 @@ class Crawler{
         // if(this.image.src){
         //     ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
         // } else {
-            ctx.fillStyle = this.color;
+            ctx.fillStyle = this.type;
             ctx.fillRect(this.x, this.y, this.width, this.height)
             
         // }
@@ -65,17 +84,12 @@ class Crawler{
 
 }
 
-// enemy()
-// function enemy() {
-//     console.log('enemy move function example')
-    
 
-// }
       
   
 
 function renderEnemies(){
- 
+    
         if(enemyOne.alive){
         //render enemyOne to show 
             enemyOne.render()  
@@ -96,7 +110,7 @@ function renderEnemies(){
           //starting point for sqaure
           ctx.clearRect(0, 0, canvas.width, canvas.height);
        
-          ctx.fillRect(enemyOne.x, enemyOne.y, 80, 80, )
+          ctx.fillRect(enemyOne.x, enemyOne.y, 80, 80)
           
         }  
 
@@ -172,7 +186,7 @@ const gameLoop = () =>{
     if(startDelay === 0){
         setTimeout(function(){
             renderEnemies()
-            startDelay = 1
+            startDelay = 5
         }, 3000)
     } else {
         renderEnemies()
@@ -223,7 +237,7 @@ function isIntersect(x, y,  enemy){
     if (x >= enemy.x && x < enemy.x+enemy.width && 
         y >= enemy.y && y < enemy.y+enemy.height) {
         console.log('you clicked enemy ' + enemy.color)
-        document.getElementById('status').innerHTML = 'you destryoed the ' + enemy.color + ' enemy!';
+        document.getElementById('status').innerHTML = 'you destryoed the enemy!';
         return true;
     
         }
@@ -242,12 +256,15 @@ function isIntersect(x, y,  enemy){
         document.addEventListener('DOMContentLoaded', ()=>{
         console.log('Dom is linked');
         //link the movementDisplay
+        
+       
         movementDisplay = document.getElementById('movement');
         console.log('movement linked')
         
         
         //crawler takes in(x, y, width, height, color)
-        enemyOne = new Crawler(375, -100, 80, 80, 'orange');
+        enemyOne = new Crawler(375, -100, 80, 80,'orange');
+        console.log(enemyOne)
         enemyTwo = new Crawler(275, 600, 300, 300, 'green');
         enemyThree = new Crawler(-120, 300, 80, 90, 'red');
         enemyFour = new Crawler(800, 350, 80, 100, 'purple');
@@ -337,6 +354,7 @@ function isIntersect(x, y,  enemy){
             //under this enemyOne eventListener for linking mouse movement? or onclick?
     // document.addEventListener('click', movementHandler );
     let runGame = setInterval(gameLoop, 60);
+   
     
 
 })
