@@ -1,8 +1,16 @@
+body {
+    background-image: url('assets/steel.png');
+    color: whitesmoke;
+    
+}
+
 canvas{
     
-    background-color: lightblue;
+    align-content: center;
     width: 100%;
-    height: 100;
+    height: 100%;
+    
+    
 }
 
 #game-area {

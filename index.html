@@ -30,12 +30,13 @@
     <div id="container">
      <aside id="top-left"><h2>Shoot the Enemy</h2></aside>
      <aside id="top-right"><h2 id="movement"> <h2 id="status"> 0 | 0</h2></h2></aside>
-     <aside id="bottom-left"><h2>3</h2></aside>
+     <aside id="healthPoints"><h2>3</h2></aside>
      <main>
        <canvas onloadstart="playBackgroundMusic()" id="game-area" id="drawing">
-          <audio id="backgroundMusic" src="/Users/apple/Downloads/gamebackgroundmusic/battlemusic3.mp3"></audio>
         
-        </canvas>
+<audio id="backgroundMusic" src="sounds/battlemusic3.mp3"></audio>
+        <audio class="shotsound" id="foo" src="sounds/sniperGunShotLoud.mp3"></audio>
+    </canvas>
    
        
      </main>
