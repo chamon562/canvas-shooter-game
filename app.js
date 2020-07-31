@@ -4,12 +4,17 @@ let canvas = document.getElementById('game-area');
         //canvas config making game area play field
         canvas.setAttribute('height', 600);
         canvas.setAttribute('width', 800);
-      
+       
+       
  
 let ctx = canvas.getContext('2d');
-let playAudio = document.getElementById('backgroundMusic');
-let playShotSound = document.getElementById('shotsound')
-let hp = document.getElementById('healthPoints')
+
+
+
+
+let playShotSound = document.getElementById('shotsound');
+let hp = document.getElementById('healthPoints');
+let killscore = document.getElementById('kills');
 let movementDisplay;
 let clientX;
 let clientY;
@@ -18,7 +23,7 @@ let enemyTwo;
 let enemyThree;
 let enemyFour;
 //TODO MAKE SCORE Count each death on enemy
-// let score;
+
 let oneY = 0;
 let oneX = 0;
 let twoY = 0;
@@ -28,31 +33,29 @@ let threeY = 0;
 let fourY = 0;
 let fourX = 0;
 let startDelay = 0;
+let kills = 0;
 
 
 
-function shootsound(){
-    document.addEventListener('mousedown', playShotSound.play())
-}
 
-function playBackgroundMusic(){
-    console.log(playBackgroundMusic)
-    playAudio.play()
-}
 
-function updateHealth(){
-    //if enemy is alive for 3 seconds player health goes down by 1
-    let player = '';
-    if(enemyOne.alive === 3000 ){
-        hp.textContet = player -1;
-    } else {
-        player.hp = hp
-    }
-}
 
-function endGame(){
-    //if player health points = 0 end game
-}
+// function updateHealth(){
+//     //if enemy is alive for 3 seconds player health goes down by 1
+//     let player = '';
+//     if(enemyOne.alive === 3000 ){
+//         hp.textContet = player -1;
+//     } else {
+//         player.hp = hp
+//     }
+// }
+
+
+
+    //if player health points = 0 end game make game stop 
+
+    //if playe reachers score of 15 kills end game  
+
 
 //Crawler Constructor function
 class Crawler{
@@ -98,22 +101,9 @@ class Crawler{
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height)
         }
-    }
-
-    //trying to add in speed 
-    
-    //this.dx the changes in x position
-        // if(src){
-            // this.image.src = src;
-        // }
-    // this.render is like draw
-    
-
-        
+      }
 
     }
-
-    
 
 }
 
@@ -122,7 +112,7 @@ class Crawler{
   
 
 function renderEnemies(){
-    
+   
         if(enemyOne.alive){
         //render enemyOne to show 
             enemyOne.render()  
@@ -145,7 +135,7 @@ function renderEnemies(){
        
        
         enemyOne.render()
-         
+       
           
         }  
 
@@ -200,7 +190,7 @@ function renderEnemies(){
             fourY += 1;
             fourX += 1;
             
-            enemyFour.x -= 25
+            enemyFour.x -= 20
           
       } else if (fourY == -200 && fourX == -200){
           fourY = 0;
@@ -215,86 +205,136 @@ function renderEnemies(){
       }
 
 }
+
+document.getElementById('gunload').play();
 const gameLoop = () =>{
+    
+    
+    document.getElementById('bgm').play();
 
     // clearing the canvas game area back to zero
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //TODO make movement display with mouse
     // movementDisplay.textContent = `X:${mainHero.x}\nY:${mainHero.this..y} `;
     //show the enemyOne if ogre is alive
+    
     if(startDelay === 0){
         setTimeout(function(){
-            renderEnemies()
+            renderEnemies();
             startDelay = 5
         }, 3000)
     } else {
-        renderEnemies()
+        renderEnemies();
     }
+    detectWin();
 }
 
-
-
-
-
-//get keycode
-//w: 87 a:65 s:83 d:68
-function keyDownHandler(event) {
-    console.log(event)
-        if(event.keyCode == 68) {
-            rightPressed = true;
-        }
-        else if(event.keyCode == 65) {
-            leftPressed = true;
-        }
-        if(event.keyCode == 68) {
-            downPressed = true;
-        }
-        else if(event.keyCode == 87) {
-            upPressed = true;
-            
-        }
-    }
-function keyUpHandler(event) {
-    console.log(event)
-        if(event.keyCode == 68) {
-            rightPressed = false;
-        }
-        else if(event.keyCode == 65) {
-            leftPressed = false;
-        }
-        if(event.keyCode == 68) {
-            downPressed = false;
-        }
-        else if(event.keyCode == 87) {
-            upPressed = false;
-            
-        }
-    }
-    
- 
+// hit detector 
 function isIntersect(x, y,  enemy){
     if (x >= enemy.x && x < enemy.x+enemy.width && 
         y >= enemy.y && y < enemy.y+enemy.height) {
-        console.log('you clicked enemy ' + enemy.color)
-        document.getElementById('status').innerHTML = 'you destryoed the enemy!';
-        // document.getElementById('kills').innerText = 'kills' + score ++;
+        // console.log('you clicked enemy ' + enemy.color)
+       
+        // document.getElementById('kills').innerHTML = 'Kills:' + kills;
+        document.getElementById('kills').innerText = 'kills: ' + kills;
         return true;
     
         }
         return false;
 }
-//function for enemies to move in and out of screen
-// select the enemy i want 
-//move starting from x to another x or y to another y
+  
+function killsound(){
+    if(kills === 1){
+        document.getElementById('fun').play()
+        document.getElementById('gunload').play();
+    }
+    if(kills === 2){
+        document.getElementById('laughOne').play()
+    }
+    if(kills === 3){
+        document.getElementById('bag').play()
+    }
+    if(kills === 5){
+        document.getElementById('gunload').play();
+        document.getElementById('mega').play()
+    }
+    if(kills === 7){
+        document.getElementById('stolebag').play()
+    }
+    if(kills === 9){
+        document.getElementById('godlike').play()
+        
+    }
+    if(kills === 10){
+        document.getElementById('gunload').play();
+        document.getElementById('lowlaugh').play()
+    }
+    if(kills ===12){
+        document.getElementById('holy').play()
+    }
+    if(kills ===15){
+        document.getElementById('gunload').play();
+        document.getElementById('ultra').play()
+    }
+    if(kills === 19){
+       document.getElementById('rampage').play()
+    }
+    if(kills === 20){
+        document.getElementById('gunload').play();
+     }
+     if(kills === 21){
+         document.getElementById('murder').play()
+     }
+    if(kills === 23){
+      document.getElementById('mine').play()
+    }
+}
+
+function detectWin(){
+    console.log('detect win!')
+    if(kills === 26){
+        endGame();
+    }
+}
+
+function endGame(){
+      clearInterval(runGame);
+      clearTimeout(time);
+      document.getElementById('bgm').pause();
+      document.getElementById('win').play()
+      document.getElementById('victory').play()
+      let winText = document.getElementById('drawing')
+      winText.textContent = 'YOU WIN!'
+        
+        
+    }
+    
+//update score because if reach 15 game ends. 
+    //i have hit detector that shows the enemy dies.
+    //winGame is called when reach 15 kills
+
+   
+   //endGame runs when player hp is 0
+//    function healthPoints(){
+    //    if enemy stays out longer than 5 seconds 
+    // healthpoints -1 intill zero endgame?
+    // 
+
+//    }
 
 
+   //function to add game score once it hits 15 make a stop game win
+   
+    
 
-//TODO function to link image background and enemies
 
-
+   
+   let runGame = setInterval(gameLoop, 60);
+        
+   let time;
 
         document.addEventListener('DOMContentLoaded', ()=>{
-        console.log('Dom is linked');
+            document.getElementById('bgm').play(); 
         //link the movementDisplay
         
        
@@ -308,14 +348,10 @@ function isIntersect(x, y,  enemy){
         console.log(enemyOne)
         enemyTwo = new Crawler(275, 600, 300, 300, 'green', 'assets/sniperfrontview.png');
         enemyThree = new Crawler(-120, 300, 250, 150, 'red', 'assets/sniper15.png');
-        enemyFour = new Crawler(800, 350, 80, 100, 'purple', 'assets/sniperslidingfromright.png');
-        // mainHero = new Crawler(100, 100, 40, 40, 'blue');
-        //TODO need to make mouse movement as contrlor instead of WASD keys
-
+        enemyFour = new Crawler(800, 260, 150, 200, 'purple', 'assets/sniperright.png');
         
-        // document.addEventListener('keydown', keyDownHandler, false);
-        // document.addEventListener('mousemove', crossHair);
         canvas.addEventListener('mousedown', function (e){
+            document.getElementById('shotsound').play()
        
 
 
@@ -340,64 +376,77 @@ function isIntersect(x, y,  enemy){
            if(isIntersect(e.offsetX, e.offsetY, enemyOne)){
                console.log('you hit enemyOne');
                enemyOne.alive = false;
-               if(enemyOne.alive = false){
-                   
+               document.getElementById('foo').play()
+               kills++;
+               killsound()
+               if(kills == 26){
+                console.log('yur win');
+                endGame();
                }
-               setTimeout(function(){
+            
+              console.log(kills);
+              time = setTimeout(function(){
                 enemyOne.alive = true; 
+                console.log('SET TIME OUT WORKS')
                 //make X and Y random to pop up in different places
-                oneY = 0
-                oneX = 0
+                oneY = 0;
+                oneX = 0;
                 enemyOne.y = -100;
                 renderEnemies()
-               }, 3000)
+               }, 5000)
                //math.random
                //how to set time interval and respawn enemy back with 
                //funciton in here?
-               }
+            }
 
            if(isIntersect(e.offsetX, e.offsetY, enemyTwo)){
                console.log('you hit enemyTwo');
                enemyTwo.alive = false;
-               setTimeout(function(){
+               document.getElementById('foo').play()
+               kills++
+               killsound()
+              console.log(kills)
+               time = setTimeout(function(){
                 enemyTwo.alive = true
                 twoY = 0
                 twoX = 0
                 enemyTwo.y = 600
                 renderEnemies()
-               }, 3000)
-
-                
-           }
+               }, 5000)
+            }
 
            if(isIntersect(e.offsetX, e.offsetY, enemyThree)){
                console.log('you hit enemyThree');
                enemyThree.alive = false;
-               setTimeout(function(){
+               document.getElementById('foo').play()
+               kills++
+               killsound()
+               console.log(kills)
+               time = setTimeout(function(){
                 enemyThree.alive = true
                 threeY = 0
                 threeX = 0
                 enemyThree.x = 0
                 renderEnemies()
-               }, 3000)
+               }, 5000)
                 
            }
 
-           if(isIntersect(e.offsetX, e.offsetY, enemyFour)){
+           if(isIntersect(e.offsetX, e.offsetY, enemyFour)){    
                console.log('you hit enemyFour');
                enemyFour.alive = false;
-               setTimeout(function(){
+               document.getElementById('foo').play()
+               kills++
+               killsound()
+               console.log(kills)
+               time = setTimeout(function(){
                 enemyFour.alive = true
-               }, 3000)
+               }, 5000)
               
-           }
-          });
+            }
+    })
             
-            // mainHero = new Crawler(50, 80, 20, 20, 'blue'); 
-            // document.addEventListener('click', click)
-            //under this enemyOne eventListener for linking mouse movement? or onclick?
-    // document.addEventListener('click', movementHandler );
-    let runGame = setInterval(gameLoop, 60);
+    
    
     
 

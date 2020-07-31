@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
     <link rel="stylesheet" href="style.css">
+
     <title>2D FPS Shooter</title>
 </head>
 <body>
@@ -18,7 +19,7 @@
                 <span>***Warning this game involves Mild violence with
                     with fictional characters involving the use of firearms. Parental discretion is advised.***</span>
                 Look alive! Be ready to use your mouse to aim and shoot<span>(*!*LeftClick*!*)</span>. 
-                You will have a 2 second window before The enemies 
+                You will have a certain amount time to hit your target, or the enemies 
                 fire back. Your HP<span>(*!*Health Points *!*)</span> starts
                 at 3, so if you get hit 3 times, you're dead. If you 
                 manage to survive and get 15 kills you <span class="green">WINNER</span> the game! Good Lucc!
@@ -28,22 +29,42 @@
 
     
     <div id="container">
-     <aside id="top-left"><h2>Shoot the Enemy</h2></aside>
+     <aside id="top-left"><h2 id="game-title">Shooter McSnipes</h2></aside>
      <aside id="top-right"><h2 id="movement"> <h2 id="status"> 0 | 0</h2></h2></aside>
-     <aside id="healthPoints"><h2>3</h2></aside>
+     <aside id="kills"><span>kills: 0</span></aside>
+     <aside id="healthPoints"> <span id='hp'>HP: 3</span></aside>
      <main>
-       <canvas onloadstart="playBackgroundMusic()" id="game-area" id="drawing">
-        
-<audio id="backgroundMusic" src="sounds/battlemusic3.mp3"></audio>
-        <audio class="shotsound" id="foo" src="sounds/sniperGunShotLoud.mp3"></audio>
+         <canvas id="game-area" id="drawing">
+        <audio  id="foo" src="sounds/sniperducsoundhit.mp3"></audio>
+        <audio id="shotsound" src="sounds/snipergunhit.mp3"></audio>
+        <audio id="win" src="sounds/darkwillowthisiswhaticamefor7killls.mp3"></audio>
+        <audio id="victory" src="sounds/victorysound.mp3"></audio>
+        <audio id="gunload" src="sounds/gunload.mp3"></audio>
+        <audio id="firstblood" src="sounds/darkwillowfirstblood.mp3"></audio>
+        <audio id="bag" src="sounds/darkwillowthisoneinthebag3kills.mp3"></audio>
+        <audio id="" src="sounds/"></audio>
+        <audio id="laughOne" src="sounds/darkwillowlaugh2.mp3"></audio>
+        <audio id="fun" src="sounds/darkwillowletshavesomefunshallwe.mp3"></audio>
+        <audio id="mega" src="sounds/darkwillowkillingspree5kills.mp3"></audio>
+        <audio id="chills" src="sounds/darkwillowooohihavechills.mp3"></audio>
+        <audio id="godlike" src="sounds/darkwillowgodlike9kills.mp3"></audio>
+        <audio id="lowlaugh" src="sounds/darkwillowlaugh2.mp3"></audio>
+        <audio id="stolebag" src="sounds/darkwillowinthebagstolethebagmybag6kills.mp3"></audio>
+            <audio id="holy" src="sounds/darkwillowholyshit.mp3"></audio>
+            <audio id="ultra" src="sounds/darkwillowultrakill12.mp3"></audio>
+            <audio id="rampage" src="sounds/darkwillowrampage.mp3"></audio>
+            <audio id="murder" src="sounds/darkwillowmurderpaysbills.mp3"></audio>
+            <audio id="mine" src="sounds/darkwillowattackyourmine.mp3"></audio>
+    
     </canvas>
-   
-       
-     </main>
-    </div>
+        
+        
+    </main>
+</div>
 
 
-    <script src="modal.js"></script>
-    <script src="app.js"></script>
+<audio id="bgm" src="./sounds/dota2laning.mp3"></audio>
+<script src="modal.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
