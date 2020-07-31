@@ -1,8 +1,11 @@
 # canvas-shooter-game
-This is my canvas-shooter-game project due week3 
+This is my canvas-shooter-game project due week 3.
 
 # Shooter McSniper
 This game is a straight 90s arcade style shooter, where an enemy randomly shows up on the screen and the player must react quick enough to shoot the target before they fire back. 
+
+- Here is my Link to the game hosted on Github.com 
+https://chamon562.github.io/canvas-shooter-game/
 
 ## Licensing
 I do not own the copyright to any of the music, audio, images in this game. All rights go to the makers of highly played Dota 2. 
@@ -160,6 +163,11 @@ openModalButtons.forEach(button => {
 })
 ```
 
+9. This is my last moment win announcement I made. I created a h1 and gave an id. Then inside my Game win functino I grabElementById of the id of h1 called 'announce' and put a simple words in You win!
+```Js
+ let winText = document.getElementById('announce')
+      winText.innerHTML = 'YOU WIN!'
+```
 ## Sounds I learned how to make work
 
 Here is an example of me looking up how to put in a sound. HTML has an audio tag that I gave an id and sorce to put. Whenever I wanted to use it. I use the getElementById method and the main thing was it needed to play in a function somewhere from what I experienced. I couldnt throw it anywhere I wanted because an error would people saying it wasnt being used.
@@ -172,7 +180,7 @@ Here is an example of me looking up how to put in a sound. HTML has an audio tag
 
 ## Conclusion
 
-I wanted to quit. I really did, part of it was seeing how others understood everything so well and I didnt. I showed up to TA hours and asked for so much help and still felt like I kinda of understood how things worked, but quickly forgot. I am forever greatfull to have made it this far. Then, after taking a break. I did some reflecting. I invested so much into this and I could hear this famouse speaker in my head by the name of Eric Thomas say, "dont cry to quit. You alreay in pain, get a reward from it!" So even if I dont understand much on dont catch on as well, I just know Im not going anywhere. Gona ride this till the wheels fall off.
+I wanted to quit. I really did, part of it was seeing how others understood everything so well and I didnt. I showed up to TA hours and asked for so much help and still felt like I kinda of understood how things worked, but quickly forgot. I am forever greatfull to have made it this far. Then, after taking a break. I did some reflecting. I invested so much into this and I could hear this famouse speaker in my head by the name of Eric Thomas say, "dont cry to quit, cry to keep going. You alreay in pain, get a reward from it!" Then I think about my family who I gotta take care of. So I cant let them down and one thing for, I ant for sure ant going back to shit I used to do. Gotta stay elevated and keep moving. I know Im not that smart and I dont understand much or dont catch on as well, I just know Im not going anywhere and Im not qutting. Gona ride this till the wheels fall off and see where it goes. Still here for a reason, finna find out.
 
 ## Special Thanks
 I just want to thank the kindness of these people who have helped me come out my shell and feel like its ok to be myself. 
@@ -192,3 +200,5 @@ Special Thanks to Taylor Darneille, when I scared to reach out helped comfort me
 Special Thanks to my Pod Gang Lizz who helped talk me into reaching out when I felt left behind and the homie Levin for understanding my situation and motivating me to stay in it and not quit. Im suprised to run into people who make me feel genuine. 
 
 Special Thanks to Yoel Morad, always has a good vibe to him and very hard worker who wants to see his peers succeed. Thanks for the motivation brody. Lets keep it movin. 
+
+Special Thanks to Adam and pete for their great vibes.

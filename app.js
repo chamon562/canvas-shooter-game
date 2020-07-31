@@ -54,7 +54,7 @@ let kills = 0;
 
     //if player health points = 0 end game make game stop 
 
-    //if playe reachers score of 15 kills end game  
+   
 
 
 //Crawler Constructor function
@@ -206,7 +206,7 @@ function renderEnemies(){
 
 }
 
-document.getElementById('gunload').play();
+// document.getElementById('gunload').play();
 const gameLoop = () =>{
     
     
@@ -303,15 +303,14 @@ function endGame(){
       document.getElementById('bgm').pause();
       document.getElementById('win').play()
       document.getElementById('victory').play()
-      let winText = document.getElementById('drawing')
-      winText.textContent = 'YOU WIN!'
+      let winText = document.getElementById('announce')
+      winText.innerHTML = 'YOU WIN!'
+    
         
         
     }
     
-//update score because if reach 15 game ends. 
-    //i have hit detector that shows the enemy dies.
-    //winGame is called when reach 15 kills
+
 
    
    //endGame runs when player hp is 0
@@ -323,7 +322,7 @@ function endGame(){
 //    }
 
 
-   //function to add game score once it hits 15 make a stop game win
+
    
     
 
