@@ -22,6 +22,7 @@ let enemyOne;
 let enemyTwo;
 let enemyThree;
 let enemyFour;
+let catWin;
 //TODO MAKE SCORE Count each death on enemy
 
 let oneY = 0;
@@ -109,19 +110,18 @@ class Crawler{
 
 
       
-  
 
 function renderEnemies(){
    
         if(enemyOne.alive){
         //render enemyOne to show 
-            enemyOne.render()  
+            enemyOne.render();
                         
             if(oneY < 20 && oneX > -20){
                 oneY += 1;
                 oneX += 1;
                 
-                enemyOne.y += 5
+                enemyOne.y += 5;
                 // console.log(enemyOne.x)
                 // console.log(enemyOne.y)
           } else if (oneY == -200 && oneX == -200){
@@ -134,7 +134,7 @@ function renderEnemies(){
           ctx.clearRect(0, 0, canvas.width, canvas.height);
        
        
-        enemyOne.render()
+        enemyOne.render();
        
           
         }  
@@ -145,7 +145,7 @@ function renderEnemies(){
                 twoY += 1;
                 twoX += 1;
                 
-                enemyTwo.y -= 20
+                enemyTwo.y -= 20;
                 // console.log(enemyTwo.x)
                 // console.log(enemyTwo.y)
           } else if (twoY == -200 && twoX == -200){
@@ -158,16 +158,16 @@ function renderEnemies(){
           ctx.clearRect(0, 0, canvas.width, canvas.height);
         
       
-        enemyTwo.render()
+        enemyTwo.render();
         }
         if(enemyThree.alive){
-          enemyThree.render()
+          enemyThree.render();
 
           if(threeY < 15 && threeX > -20){
             threeY += 1;
             threeX += 1;
             
-            enemyThree.x += 5
+            enemyThree.x += 5;
           
       } else if (threeY == -200 && threeX == -200){
           threeY = 0;
@@ -190,7 +190,7 @@ function renderEnemies(){
             fourY += 1;
             fourX += 1;
             
-            enemyFour.x -= 20
+            enemyFour.x -= 20;
           
       } else if (fourY == -200 && fourX == -200){
           fourY = 0;
@@ -201,7 +201,7 @@ function renderEnemies(){
       ctx.clearRect(0, 0, canvas.width, canvas.height);
    
     
-    enemyFour.render()
+    enemyFour.render();
       }
 
 }
@@ -222,7 +222,7 @@ const gameLoop = () =>{
         setTimeout(function(){
             renderEnemies();
             startDelay = 5
-        }, 3000)
+        }, 10000)
     } else {
         renderEnemies();
     }
@@ -245,53 +245,53 @@ function isIntersect(x, y,  enemy){
   
 function killsound(){
     if(kills === 1){
-        document.getElementById('fun').play()
+        document.getElementById('fun').play();
         document.getElementById('gunload').play();
     }
     if(kills === 2){
-        document.getElementById('laughOne').play()
+        document.getElementById('laughOne').play();
     }
     if(kills === 3){
-        document.getElementById('bag').play()
+        document.getElementById('bag').play();
     }
     if(kills === 5){
         document.getElementById('gunload').play();
-        document.getElementById('mega').play()
+        document.getElementById('mega').play();
     }
     if(kills === 7){
-        document.getElementById('stolebag').play()
+        document.getElementById('stolebag').play();
     }
     if(kills === 9){
-        document.getElementById('godlike').play()
+        document.getElementById('godlike').play();
         
     }
     if(kills === 10){
         document.getElementById('gunload').play();
-        document.getElementById('lowlaugh').play()
+        document.getElementById('lowlaugh').play();
     }
     if(kills ===12){
-        document.getElementById('holy').play()
+        document.getElementById('holy').play();
     }
     if(kills ===15){
         document.getElementById('gunload').play();
         document.getElementById('ultra').play()
     }
     if(kills === 19){
-       document.getElementById('rampage').play()
+       document.getElementById('rampage').play();
     }
     if(kills === 20){
         document.getElementById('gunload').play();
      }
      if(kills === 21){
-         document.getElementById('murder').play()
+         document.getElementById('murder').play();
      }
     if(kills === 23){
-      document.getElementById('mine').play()
+      document.getElementById('mine').play();
     }
 }
 
 function detectWin(){
-    console.log('detect win!')
+    console.log('detect win!');
     if(kills === 26){
         endGame();
     }
@@ -301,11 +301,11 @@ function endGame(){
       clearInterval(runGame);
       clearTimeout(time);
       document.getElementById('bgm').pause();
-      document.getElementById('win').play()
-      document.getElementById('victory').play()
-      let winText = document.getElementById('announce')
-      winText.innerHTML = 'YOU WIN!'
-    
+      document.getElementById('win').play();
+      document.getElementById('victory').play();
+      let winText = document.getElementById('announce');
+      winText.innerHTML = 'YOU WIN!';
+
         
         
     }

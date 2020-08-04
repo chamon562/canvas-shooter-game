@@ -1,6 +1,6 @@
 body {
     background-image: url('assets/steel.png');
-    
+    margin: 20px;
     
 }
 #game-title{
@@ -29,7 +29,7 @@ body {
     font-size: 100px;
     font-family: sans-serif;
     border: 2px solid greenyellow;
-    color: honeydew;
+    color: rgb(240, 240, 26);
 }
 
 canvas {
@@ -67,13 +67,22 @@ span.green{
     scale used to smoothly transition in and out of browser*/
     transform: translate(-50%, -50%) scale(0);
     /* supposed to zoom in and out but nothing? */
-   transition: 200ms ease-in-out;
+    transition: 200ms ease-in-out;
     border: 1px solid black;
     border-radius: 10px;
     z-index: 10;
     background-color: white;
     width: 500px;
     max-width: 80%;
+}
+
+
+#purple {
+    color: rgb(232, 77, 232);
+}
+
+#hpcolor{
+    color: rgb(5, 186, 5);
 }
 /* added scale to 1 so in html would show full scale size */
 .modal.active {
