@@ -43,7 +43,7 @@ canvas {
 }
 
 #game-area {
-    background-image: url('/Users/apple/Downloads/Sniper stuff/background2.jpg');
+    background-image: url('assets/background2.jpg');
     background-size: 100% 100%;
 }
 
